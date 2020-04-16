@@ -167,15 +167,15 @@ def boxCoxPlot(dataset, col_name='sales', lam1=0, lam2=0.7):
     plt.show()
 
 ### Distribution Plot by Box-Cox with Various Lambda
-# boxCoxPlot(df, col_name='sales', lam2=.4)
-# boxCoxPlot(df, col_name='customer', lam2=.4)
-# boxCoxPlot(df, col_name='visit', lam2=.4)
-# boxCoxPlot(df, col_name='transaction', lam2=.4)
-# boxCoxPlot(df, col_name='unit', lam2=.4)
+boxCoxPlot(df, col_name='sales', lam2=.4)
+boxCoxPlot(df, col_name='customer', lam2=.4)
+boxCoxPlot(df, col_name='visit', lam2=.4)
+boxCoxPlot(df, col_name='transaction', lam2=.4)
+boxCoxPlot(df, col_name='unit', lam2=.4)
 
 ### Transform
 df_scale = df.copy()
-col_lambda = [.18, .16, .16, .17, .17]
+col_lambda = [.17, .16, .16, .16, .17]
 cols = ['sales', 'customer', 'visit', 'transaction', 'unit']
 for ix1, ix2 in zip(cols, col_lambda):
     df_scale[ix1] = boxCox(df_scale[ix1], ix2)
@@ -261,10 +261,10 @@ col_1 = ['store', 'weekday', 'month', 'day', 'day_rel', 'weekend', 'dayoff',
          'holiday'] # Non-Numeric Features
 col_2 = list(df_scale.columns[5:10]) + list(df_scale.columns[12:-6]) # Numeric Features
 col = col_1 + col_2
-col_label = ['store_code', 'date_id', 'dayoff', 'holiday']
+col_label = ['store_code', 'week_group', 'date_id', 'dayoff', 'holiday']
 
 window = 7 * 3
-step_main = 9
+step_main = 7
 step_aux = 1
 
 X_main = [] # Dataset from t-21 to t-0 (All Features)
